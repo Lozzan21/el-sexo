@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+</head>
+<body>
+    <div class="register-form">
+        <h1>Registro</h1>
+        <form action="/register" method="POST">
+            <label for="user">User</label>
+            <input type="text" name="user" required>
+
+            <label for="password">Password</label>
+            <input type="password" name="password" required>
+
+            <div style="display: inline;">
+                <a href="/" class="btn-cancel">Cancelar</a>
+                <input type="submit" class="btn-save" value="enviar">
+            </div>
+        </form>
+    </div>
+    
+</body>
+</html>

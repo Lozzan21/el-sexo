@@ -9,12 +9,13 @@
     <div class="login-form">
         <h1>Login</h1>
         <form action="/auth" method="post">
-            <input type="text" name="user" id="user" placeholder="User" required>
+            <input type="text" name="name" id="user" placeholder="User" required>
             <input type="password" name="pass" id="pass" placeholder="Password" required>
             <input type="submit" class="btn-login" value="Login">
-            <input type="submit" class="btn-registrar" value="register">
 
         </form>
+        <form action="/register" method="GET">
+            <input type="submit" class="btn-registrar" value="register">
     </div>
 </body>
 </html>

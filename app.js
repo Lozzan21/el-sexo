@@ -7,8 +7,8 @@ app.use(express.json());
 const dotenv = require('dotenv');
 dotenv.config({path:'./env/.env'});
 
-app.use('/resources', express.static('public'));
-app.use('/resources', express.static(__dirname + '/public'));
+// app.use('/resources', express.static('public'));
+app.use(express.static(__dirname + '/public'));
 
 app.set('view engine', 'ejs');
 

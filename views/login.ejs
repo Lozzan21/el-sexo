@@ -2,20 +2,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio</title>
-    <link rel="stylesheet" href="resources/css/style.css">
+    <title>Iniciar sesión</title>
+    <link rel="icon" type="icono" href="/img/logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    <div class="login-form">
-        <h1>Login</h1>
-        <form action="/auth" method="post">
-            <input type="text" name="name" id="user" placeholder="User" required>
-            <input type="password" name="pass" id="pass" placeholder="Password" required>
-            <input type="submit" class="btn-login" value="Login">
+    <div class="bg-cover bg-center h-screen flex items-center justify-center" style="background-image: url('/img/fondologin.png')">
+        <div class="login-form  h-5/6 w-2/6 border-gray-200 border rounded-lg bg-white grid place-content-center space-y-6 justify-items-center opacity-90">
+            <img class="h-32 w-28" src="/img/logo.png" alt="logo">
+            <form class="space-y-6" action="/auth" method="post">
 
-        </form>
-        <form action="/register" method="GET">
-            <input type="submit" class="btn-registrar" value="register">
+                <div class="grid justify-center">
+                    <h2 class="font-medium">Usuario</h2>
+                    <input class="w-96 border-gray-400 border rounded-lg text-center h-8" type="text" name="user" id="user" placeholder="User" required>
+                </div>
+
+                <div class="grid justify-center">
+                    <h2 class="font-medium">Contraseña</h2>
+                    <input class="w-96 border-gray-400 border rounded-lg h-8 text-center" type="password" name="pass" id="pass" placeholder="Password" required>
+                </div>
+
+                <div class="grid justify-center">
+                    <input type="submit" class="mt-6 btn-login bg-[#730027] w-96 opacity-100 rounded-lg h-8 text-white font-medium font-sans" value="LOGIN">
+                    <input type="submit" class="btn-registrar" value="REGISTER">
+                </div>
+                
+            </form>
+        </div>
     </div>
 </body>
 </html>

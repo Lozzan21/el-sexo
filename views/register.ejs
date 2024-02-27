@@ -3,26 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="resources/css/style.css">
     <title>Registro</title>
+    <link rel="icon" type="icono" href="/img/logo.png">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div class="register-form">
-        <h1>Registro</h1>
-        <form action="/register" method="POST">
-            <label for="name">user</label>
-            <input type="text" name="name" required>
-
-            <label for="pass">Password</label>
-            <input type="password" name="pass" required>
-
-            <div style="display: inline;">
-                <a href="/login" class="btn-cancelar">Cancelar</a>
-                <input type="submit" class= "btn-save" value = "Enviar">
-            </div>
-        </form>
+<body class="bg-cover bg-center h-screen" style="background-image: url('/img/fondologin.png')">
+    <div class="bg-[#730027] h-14 w-auto flex items-center">
+        <img class="ml-3 h-11 w-10" src="/img/logo2.png" alt="logo">
+        <h1 class="text-white font-semibold ml-2">Portal de oficios</h1>
+        <h1 class="text-white font-semibold ml-64">Centro de Estudios Tecnológicos Industrial y de Servicios No. 148</h1>
+        <button class="ml-52">
+            <img class="ml-3 h-6 w-6" src="/img/configuracion.png" alt="configura">
+        </button>
     </div>
-    
+
+
+
+    <div class="container mx-auto py-12 mt-6">
+        <div class="max-w-md mx-auto bg-white rounded-lg overflow-hidden shadow-md h-auto opacity-90">
+            <div class="text-center py-4 bg-[#730027]">
+                <h1 class="text-2xl font-bold text-white">AGREGAR USUARIO</h1>
+            </div>
+            <form action="/register" method="POST" class="p-6 space-y-10 mt-7">
+                <div class="mb-4">
+                    <label for="name" class="block text-black font-medium mb-2">Usuario</label>
+                    <input type="text" name="name" required class="appearance-none border border-slate-400 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+                <div class="mb-4">
+                    <label for="pass" class="block text-black font-medium mb-2">Contraseña</label>
+                    <input type="password" name="pass" required class="appearance-none border border-slate-400 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+                <div class="flex items-center justify-end space-x-5">
+                    <a href="/login" class="text-white font-bold py-2 px-4 rounded-xl focus:outline-none focus:shadow-outline bg-slate-700 hover:bg-slate-500">Cancelar</a>
+                    <input type="submit" class="bg-[#730027] hover:bg-slate-500 text-white font-bold py-2 px-4 rounded-xl focus:outline-none focus:shadow-outline" value="Enviar">
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
 </html>

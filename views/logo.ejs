@@ -7,113 +7,130 @@
     <link rel="icon" type="icono" href="/img/logo.png">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-slate-100">
 
 
-    <div class="bg-[#730027] h-14 w-auto flex items-center">
+    <div class="bg-[#730027] h-14 w-auto flex items-center justify-between">
         <img class="ml-3 h-11 w-10" src="/img/logo2.png" alt="logo">
         <h1 class="text-white font-semibold ml-2">Portal de oficios</h1>
-        <h1 class="text-white font-semibold ml-64">Centro de Estudios Tecnológicos Industrial y de Servicios No. 148</h1>
-        <button class="ml-52">
-            <img class="ml-3 h-6 w-6" src="/img/configuracion.png" alt="configura">
+      
+        <button>
+            <img class="mr-5 h-6 w-6 duration-500 ease-in-out hover:scale-125" src="/img/configuracion.png" alt="configura">
         </button>
     </div>
 
-    <h1 class="font-medium mt-10 ml-10">Inserte membretes actuales para documentos oficiales</h1>
+    <h1 class=" mt-5 bg-[#730027] justify-center text-xl font-medium items-center flex text-white rounded-lg rounded-bl-none rounded-tl-none h-16 w-5/12">INSERTE MEMBRETE ACTUAL PARA DOCUMENTO OFICIAL</h1>
 
-    <div class="grid items-center ml-80 space-y-20 mt-16">
+    <div class="flex">
 
-            <div class="w-9/12 h-32">
+    
 
-                <div class="flex items-center space-x-80">
+        <div class="grid items-center space-y-12 justify-center ml-10 w-7/12">
 
-                    <h1 class="h-12 bg-[#730027] items-center flex w-52 text-white font-medium justify-center rounded-lg rounded-bl-none rounded-br-none">Membrete superior</h1>
+                <div class="mt-5 w-11/12 h-32">
 
-                    <label for="fileInput" class="border flex justify-center items-center w-48 h-9 cursor-pointer rounded-lg bg-[#730027] font-medium text-white">
-                    Seleccionar
-                    </label>
-                    <input type="file" id="fileInput" accept="image/*" class="hidden ">
+                    <div class="flex items-center w-11/12 justify-between">
 
-                </div>
+                        <h1 class="h-12 bg-[#730027] items-center flex w-52 text-white  justify-center rounded-lg rounded-bl-none rounded-br-none">Membrete superior</h1>
 
-                
+                        <label for="fileInput" class="border flex justify-center items-center w-36 h-9 cursor-pointer rounded-lg bg-[#730027]  text-white transition duration-400 ease-in-out hover:bg-gray-800 hover:scale-110">
+                        Seleccionar
+                        </label>
+                        <input type="file" id="fileInput" accept="image/*" class="hidden ">
 
-                <div class="border border-gray-500 rounded-md rounded-tl-none h-28 w-11/12 flex justify-center items-center">
-                    <img class="h-20 w-11/12" id="preview" src="#" alt="Vista previa de la imagen" style="display:none;">
-                </div>
+                    </div>
 
-
-                
-                
-                <script>
-                    const fileInput = document.getElementById('fileInput');
-                    const preview = document.getElementById('preview');
                     
-                    fileInput.addEventListener('change', function() {
-                        const file = this.files[0];
-                        if (file) {
-                            const reader = new FileReader();
-                            reader.onload = function() {
-                                preview.src = reader.result;
-                                preview.style.display = 'block';
-                            }
-                            reader.readAsDataURL(file);
-                        } else {
-                            preview.src = '';
-                            preview.style.display = 'none';
-                        }
-                    });
-                </script>
 
-            </div>
+                    <div class="border border-gray-500 rounded-md rounded-tl-none h-28 w-11/12 flex justify-center items-center">
+                        <img class="h-20 w-11/12" id="preview" src="#" alt="Vista previa de la imagen" style="display:none;">
+                    </div>
 
 
-
-
-            <div class="w-9/12 h-32">
-
-
-
-                <div class="flex items-center space-x-80">
-
-                    <h1 class="h-12 bg-[#730027] items-center flex w-52 text-white font-medium justify-center rounded-lg rounded-bl-none rounded-br-none">Membrete inferior</h1>
-
-                    <label for="fileInput2" class="border flex justify-center items-center w-48 h-9 cursor-pointer rounded-lg bg-[#730027] font-medium text-white">
-                    Seleccionar
-                    </label>
-                    <input type="file" id="fileInput2" accept="image/*" class="hidden ">
-
-                </div>
-
-
-
-                <div class="border border-gray-500 rounded-md rounded-tl-none h-28 w-11/12 flex justify-center items-center">
-                    <img class="h-20 w-11/12" id="preview2" src="#" alt="Vista previa de la imagen" style="display:none;">
-                </div>
-                
-                <script>
-                    const fileInput2 = document.getElementById('fileInput2');
-                    const preview2 = document.getElementById('preview2');
                     
-                    fileInput2.addEventListener('change', function() {
-                        const file = this.files[0];
-                        if (file) {
-                            const reader = new FileReader();
-                            reader.onload = function() {
-                                preview2.src = reader.result;
-                                preview2.style.display = 'block';
+                    
+                    <script>
+                        const fileInput = document.getElementById('fileInput');
+                        const preview = document.getElementById('preview');
+                        
+                        fileInput.addEventListener('change', function() {
+                            const file = this.files[0];
+                            if (file) {
+                                const reader = new FileReader();
+                                reader.onload = function() {
+                                    preview.src = reader.result;
+                                    preview.style.display = 'block';
+                                }
+                                reader.readAsDataURL(file);
+                            } else {
+                                preview.src = '';
+                                preview.style.display = 'none';
                             }
-                            reader.readAsDataURL(file);
-                        } else {
-                            preview2.src = '';
-                            preview2.style.display = 'none';
-                        }
-                    });
-                </script>
+                        });
+                    </script>
 
-            </div>
+                </div>
 
-        
+
+
+
+                <div class="w-11/12 h-32">
+
+
+
+                    <div class="flex items-center w-11/12 space-x-80">
+
+                        <h1 class="h-12 bg-[#730027] items-center flex w-72 text-white  justify-center rounded-lg rounded-bl-none rounded-br-none">Membrete inferior</h1>
+
+                        <label for="fileInput2" class="border flex justify-center items-center w-48 h-9 cursor-pointer rounded-lg bg-[#730027]  text-white transition duration-400 ease-in-out hover:bg-gray-800 hover:scale-110">
+                        Seleccionar
+                        </label>
+                        <input type="file" id="fileInput2" accept="image/*" class="hidden ">
+
+                    </div>
+
+
+
+                    <div class="border border-gray-500 rounded-md rounded-tl-none h-28 w-11/12 flex justify-center items-center">
+                        <img class="h-20 w-11/12" id="preview2" src="#" alt="Vista previa de la imagen" style="display:none;">
+                    </div>
+                    
+                    <script>
+                        const fileInput2 = document.getElementById('fileInput2');
+                        const preview2 = document.getElementById('preview2');
+                        
+                        fileInput2.addEventListener('change', function() {
+                            const file = this.files[0];
+                            if (file) {
+                                const reader = new FileReader();
+                                reader.onload = function() {
+                                    preview2.src = reader.result;
+                                    preview2.style.display = 'block';
+                                }
+                                reader.readAsDataURL(file);
+                            } else {
+                                preview2.src = '';
+                                preview2.style.display = 'none';
+                            }
+                        });
+                    </script>
+
+                </div>
+
+                <div class="space-x-2 flex justify-end mr-32">
+                    <button class="h-9 w-28 text-white bg-gray-500 rounded-lg transition duration-400 ease-in-out hover:bg-gray-400 hover:text-black hover:scale-110">CANCELAR</button>
+                    <button class="h-9 w-28 text-white bg-[#730027] rounded-lg transition duration-400 ease-in-out hover:bg-gray-800 hover:scale-110">GUARDAR</button>
+                </div>
+
+            
+
+        </div>
+
+
+
+        <div class="bg-[#730027] h-96 w-screen flex items-center justify-center rounded-lg rounded-br-none rounded-tr-none mt-3">
+            <img class="ml-3 h-72 w-64 duration-500 ease-in-out hover:scale-110" src="/img/logo2.png" alt="logo">
+        </div>
 
     </div>
 

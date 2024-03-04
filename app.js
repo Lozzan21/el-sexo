@@ -57,6 +57,10 @@ app.get('/oficio', (req, res) => {
     res.render('oficio');
 });
 
+app.get("/maestros", (req, res) => {
+  res.render("maestros");
+});
+
 
 // Registro de usuario
 app.post('/register', async(req, res) => {

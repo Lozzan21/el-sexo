@@ -38,7 +38,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/logo', (req, res) => {
-    res.render('logo'); // Aquí renderizas la vista logo.ejs
+    res.render('logo'); 
 });
 
 app.get('/login', (req, res) => {

@@ -61,6 +61,11 @@ app.get("/maestros", (req, res) => {
   res.render("maestros");
 });
 
+app.get("/materias", (req, res) => {
+    res.render("materias");
+  });
+  
+
 
 // Registro de usuario
 app.post('/register', async(req, res) => {
@@ -89,6 +94,32 @@ app.post('/auth', async(req, res) => {
             }
         });
     }
+});
+
+// Registro de maestros
+app.post('/register', async(req, res) => {
+    const name = req.body.name;
+    connection.query('INSERT INTO maestro (name) VALUES (?)', [name], async(error, results) => {
+    //connection.query('INSERT INTO maestro SET ?', {name: name}, async(error, results) => {
+        if (error) {
+            console.log(error);
+        } else {
+            res.send('Alta exitosa');
+        }
+    });
+});
+
+// Registro de materias
+app.post('/materias', async(req, res) => {
+    const name = req.body.name;
+    let passwordHash = await bcryptjs.hash(pass, 8);
+    connection.query('INSERT INTO users SET ?', {name: name, pass: passwordHash}, async(error, results) => {
+        if (error) {
+            console.log(error);
+        } else {
+            res.send('Alta exitosa');
+        }
+    });
 });
 
 // Generar PDF

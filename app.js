@@ -97,30 +97,57 @@ app.post('/auth', async(req, res) => {
 });
 
 // Registro de maestros
-app.post('/register', async(req, res) => {
+app.post('/register-maestro', async(req, res) => {
     const name = req.body.name;
     connection.query('INSERT INTO maestro (name) VALUES (?)', [name], async(error, results) => {
-    //connection.query('INSERT INTO maestro SET ?', {name: name}, async(error, results) => {
         if (error) {
             console.log(error);
+            res.send('Error al agregar el maestro');
         } else {
-            res.send('Alta exitosa');
+            res.render('maestros', { message: 'Alta exitosa del maestro' }); // Renderiza la página de maestros con un mensaje
+        }
+    });
+});
+
+// Eliminación de maestros
+app.post('/delete-maestro', async(req, res) => {
+    const maestroId = req.body.maestroId;
+    connection.query('DELETE FROM maestro WHERE id = ?', [maestroId], async(error, results) => {
+        if (error) {
+            console.log(error);
+            res.send('Error al borrar el maestro');
+        } else {
+            res.render('maestros', { message: 'Maestro eliminado exitosamente' });
         }
     });
 });
 
 // Registro de materias
-app.post('/materias', async(req, res) => {
+app.post('/register-materia', async(req, res) => {
     const name = req.body.name;
-    let passwordHash = await bcryptjs.hash(pass, 8);
-    connection.query('INSERT INTO users SET ?', {name: name, pass: passwordHash}, async(error, results) => {
+    connection.query('INSERT INTO materias (name) VALUES (?)', [name], async(error, results) => {
         if (error) {
             console.log(error);
+            res.send('Error al agregar la materia');
         } else {
-            res.send('Alta exitosa');
+            res.render('materias', { message: 'Alta exitosa de la materia' });
         }
     });
 });
+
+// Eliminación de materias
+app.post('/delete-materia', async(req, res) => {
+    const materiaId = req.body.materiaId;
+    connection.query('DELETE FROM materias WHERE id = ?', [materiaId], async(error, results) => {
+        if (error) {
+            console.log(error);
+            res.send('Error al borrar la materia');
+        } else {
+            res.render('materias', { message: 'Materia eliminada exitosamente' });
+        }
+    });
+});
+
 
 // Generar PDF
 app.post('/generar-pdf', (req, res) => {
@@ -134,3 +161,4 @@ app.post('/generar-pdf', (req, res) => {
 app.listen(3000, () => {
     console.log('SERVER RUNNING IN http://localhost:3000');
 });
+

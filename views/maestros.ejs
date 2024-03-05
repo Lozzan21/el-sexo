@@ -6,6 +6,16 @@
     <title>Maestros</title>
     <link rel="icon" type="icono" href="/img/logo.png">
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .message {
+            background-color: #4CAF50; 
+            color: white; 
+            padding: 10px 20px; 
+            margin-bottom: 20px; 
+            border-radius: 5px; 
+            text-align: center; 
+        }
+    </style>
 </head>
 <body>
 
@@ -17,7 +27,7 @@
             <img class="mr-5 h-6 w-6 duration-500 ease-in-out hover:scale-125" src="/img/configuracion.png" alt="configura">
         </button>
     </div>
-    <form method="POST" class="p-6 space-y-10 mt-7">
+    <form method="POST" action="/register-maestro" class="p-6 space-y-10 mt-7">
         <div class="mb-4">
             <label for="name" class="block text-black font-medium mb-2">Nombre del Maestro</label>
             <input type="text" name="name" required class="appearance-none border border-slate-400 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
@@ -26,6 +36,21 @@
             <input type="submit" class="bg-[#730027] hover:bg-slate-500 text-white font-bold py-2 px-4 rounded-xl focus:outline-none focus:shadow-outline" value="Agregar">
         </div>
     </form>
+    <form method="POST" action="/delete-maestro" class="p-6 space-y-10 mt-7">
+        <div class="mb-4">
+            <label for="maestroId" class="block text-black font-medium mb-2">ID</label>
+            <input type="text" name="maestroId" required class="appearance-none border border-slate-400 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <div class="flex items-center justify-end space-x-5">
+            <input type="submit" class="bg-[#730027] hover:bg-slate-500 text-white font-bold py-2 px-4 rounded-xl focus:outline-none focus:shadow-outline" value="Borrar">
+        </div>
+    </form>
+
+    <% if (typeof message !== 'undefined') { %>
+        <div class="message">
+            <%= message %>
+        </div>
+    <% } %>
     
 </body>
 </html>

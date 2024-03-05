@@ -9,18 +9,29 @@
 </head>
 <body class="bg-cover bg-center h-screen" style="background-image: url('/img/fondologin.png')">
     <div class="bg-[#730027] h-14 w-auto flex items-center justify-between">
-        <img class="ml-3 h-11 w-10" src="/img/logo2.png" alt="logo">
-        <h1 class="text-white font-semibold ml-2">Portal de oficios</h1>
+
+        <div class="flex items-center">
+
+            <img class="ml-3 h-11 w-10" src="/img/logo2.png" alt="logo">
+            <h1 class="text-white font-semibold ml-2">Portal de oficios</h1>
+
+        </div>
+        
+
+        <div class="space-x-8 mr-8 font-medium">
+
+            <button class="text-white duration-150 ease-in-out hover:scale-100 hover:bg-white hover:text-black hover:p-1 hover:rounded-lg">• Maestros</button>
+            <button class="text-white duration-150 ease-in-out hover:scale-100 hover:bg-white hover:text-black hover:p-1 hover:rounded-lg">• Materias</button>
+            <button class="text-white duration-150 ease-in-out hover:scale-100 hover:bg-white hover:text-black hover:p-1 hover:rounded-lg">• Usuarios</button>
+
+        </div>
       
-        <button>
-            <img class="mr-5 h-6 w-6" src="/img/configuracion.png" alt="configura">
-        </button>
     </div>
 
 
 
     <div class="container mx-auto py-12 mt-6">
-        <div class="max-w-md mx-auto bg-white rounded-lg overflow-hidden shadow-md h-auto opacity-90">
+        <div class="max-w-md mx-auto bg-white rounded-lg overflow-hidden shadow-2xl h-auto">
             <div class="text-center py-4 bg-[#730027]">
                 <h1 class="text-2xl font-bold text-white">AGREGAR USUARIO</h1>
             </div>
@@ -34,8 +45,8 @@
                     <input type="password" name="pass" required class="appearance-none border border-slate-400 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                 </div>
                 <div class="flex items-center justify-end space-x-5">
-                    <a href="/login" class="text-white font-bold py-2 px-4 rounded-xl focus:outline-none focus:shadow-outline bg-slate-700 hover:bg-slate-500">Cancelar</a>
-                    <input type="submit" class="bg-[#730027] hover:bg-slate-500 text-white font-bold py-2 px-4 rounded-xl focus:outline-none focus:shadow-outline" value="Enviar">
+                    <a href="/login" class="text-white font-bold py-2 px-4 rounded-xl focus:outline-none focus:shadow-outline bg-slate-700 hover:bg-slate-500 hover:text-black duration-100 ease-in-out hover:scale-105">Cancelar</a>
+                    <input type="submit" class="bg-[#730027] hover:bg-slate-500 text-white font-bold py-2 px-4 rounded-xl focus:outline-none focus:shadow-outline hover:text-black duration-100 ease-in-out hover:scale-105" value="Enviar">
                 </div>
             </form>
         </div>

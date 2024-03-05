@@ -5,14 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página de Inicio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body>
-    <h1>Pagina de incio</h1>
-    <form action="/oficio" method="GET">
-        <button type="submit">Crear oficio</button>
-    </form>
-</body>
-
     <div class="bg-[#730027] h-14 w-auto flex items-center justify-between">
 
         <div class="flex items-center">
@@ -23,15 +15,29 @@
         </div>
         
 
-        <div class="space-x-8 mr-8 font-medium">
-
-            <button class="text-white duration-150 ease-in-out hover:scale-100 hover:bg-white hover:text-black hover:p-1 hover:rounded-lg">• Maestros</button>
-            <button class="text-white duration-150 ease-in-out hover:scale-100 hover:bg-white hover:text-black hover:p-1 hover:rounded-lg">• Materias</button>
-            <button class="text-white duration-150 ease-in-out hover:scale-100 hover:bg-white hover:text-black hover:p-1 hover:rounded-lg">• Usuarios</button>
-
+        <div class="space-x-8 mr-8 font-medium flex items-center">
+            <form action="/maestros">
+                <button class="text-white duration-150 ease-in-out hover:scale-100 hover:bg-white hover:text-black hover:p-1 hover:rounded-lg", type="submit">• Maestros</button>
+            </form>
+            <form action="/materias">
+                <button class="text-white duration-150 ease-in-out hover:scale-100 hover:bg-white hover:text-black hover:p-1 hover:rounded-lg">• Materias</button>
+            </form>
+            <form action="/register">
+                <button class="text-white duration-150 ease-in-out hover:scale-100 hover:bg-white hover:text-black hover:p-1 hover:rounded-lg">• Usuarios</button>
+            </form>
         </div>
       
     </div>
+</head>
+
+<body>
+    <h1>Pagina de incio</h1>
+    <form action="/oficio" method="GET">
+        <button type="submit">Crear oficio</button>
+    </form>
+</body>
+
+
 
 
 </html>

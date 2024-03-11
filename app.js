@@ -148,15 +148,62 @@ app.post('/delete-materia', async(req, res) => {
     });
 });
 
+// Registro de especialidades
+app.post('/register-especialidad', async(req, res) => {
+    const name = req.body.name;
+    connection.query('INSERT INTO especialidades (especialidad) VALUES (?)', [especialidad], async(error, results) => {
+        if (error) {
+            console.log(error);
+            res.send('Error al agregar la especialidad');
+        } else {
+            res.render('especialidad', { message: 'Alta exitosa de especialidad' }); // Renderiza la página de maestros con un mensaje
+        }
+    });
+});
+
+
 
 // Generar PDF
 app.post('/generar-pdf', (req, res) => {
     const datosOficio = req.body;
     generadorPDF.generarPDF(datosOficio, (pdfData) => {
-        res.contentType('application/pdf');
-        res.send(pdfData);
+        // Convertir el PDF a un objeto Buffer
+        const buffer = Buffer.from(pdfData);
+
+        // Guardar el PDF en la base de datos
+        connection.query('INSERT INTO oficios (pdf_blob) VALUES (?)', [buffer], (error, results) => {
+            if (error) {
+                console.error('Error al guardar el PDF en la base de datos:', error);
+                res.status(500).send('Error al guardar el PDF en la base de datos');
+            } else {
+                console.log('PDF guardado en la base de datos con éxito');
+                res.contentType('application/pdf');
+                res.send(pdfData);
+            }
+        });
     });
 });
+
+// Ruta para mostrar el PDF descifrado
+app.get('/ver-pdf/:id', (req, res) => {
+    const oficioId = req.params.id;
+    connection.query('SELECT pdf_blob FROM oficios WHERE id = ?', [oficioId], (error, results) => {
+        if (error) {
+            console.error('Error al obtener el PDF de la base de datos:', error);
+            res.status(500).send('Error al obtener el PDF de la base de datos');
+        } else {
+            if (results.length === 0) {
+                res.status(404).send('No se encontró el PDF');
+            } else {
+                const pdfBuffer = results[0].pdf_blob;
+                res.contentType('application/pdf');
+                res.send(pdfBuffer);
+            }
+        }
+    });
+});
+
+
 
 app.listen(3000, () => {
     console.log('SERVER RUNNING IN http://localhost:3000');

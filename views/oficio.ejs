@@ -10,88 +10,87 @@
 <body>
 
     <div class="bg-[#730027] h-14 w-auto flex items-center justify-between">
-
         <div class="flex items-center">
-
             <img class="ml-3 h-11 w-10" src="/img/logo2.png" alt="logo">
             <h1 class="text-white font-semibold ml-2">Portal de oficios</h1>
-
         </div>
-      
     </div>
-
 
     <h1 class="font-medium mt-10 ml-10">FAVOR DE  LLENAR TODOS LOS CAMPOS PARA GENERAR EL OFICIO</h1>
 
     <div class="flex">
-
-            <div class="w-7/12">
-
-                <form class="space-y-10 mt-10 w-11/12" id="formularioPdf" action="/generar-pdf" method="POST" target="iframePdf">
-            
-            
+        <div class="w-7/12">
+            <form class="space-y-10 mt-10 w-11/12" id="formularioPdf" action="/generar-pdf" method="POST" target="iframePdf">
                 <div class="flex space-x-24">
                     <div class=" space-x-1 flex items-center ml-10">
-                        <label class="font-medium text-sm" for="numeroOficio">NO.OFICIO*</label>
-                        <input class="h-8 rounded border-slate-400 border" type="text" id="numeroOficio" name="numeroOficio" required><br><br>
+                        <!-- Eliminado el campo de Número de Oficio -->
                     </div>
-                    
                     <div class=" space-x-1 flex items-center">
                         <label class="font-medium text-sm" for="asunto">ASUNTO*</label>
                         <input class="h-8 rounded border-slate-400 border" type="text" id="asunto" name="asunto" required><br><br>
                     </div>
                 </div>
-                
-
-
-
                 <div class="flex space-x-24">
                     <div class=" space-x-1 flex items-center ml-10">
                         <label class="font-medium text-sm" for="fecha">FECHA*</label>
-                        <input class="h-8 rounded border-slate-400 border" type="text" id="fecha" name="fecha" required><br><br>
+                        <!-- Cambiado el tipo de input a date y eliminado el atributo required -->
+                        <input class="h-8 rounded border-slate-400 border" type="date" id="fecha" name="fecha"><br><br>
                     </div>
-
-
                     <div class=" space-x-1 flex items-center">
                         <label class="font-medium text-sm" for="destinatario">DIRIGIDO A...</label>
                         <input class="h-8 rounded border-slate-400 border" type="text" id="destinatario" name="destinatario" required><br><br>
                     </div>
                 </div>
-
-
-
-
+                <!-- Nuevos campos agregados -->
+                <div class="flex space-x-24">
+                    <div class=" space-x-1 flex items-center ml-10">
+                        <label class="font-medium text-sm" for="maestro">MAESTRO*</label>
+                        <input class="h-8 rounded border-slate-400 border" type="text" id="maestro" name="maestro" required><br><br>
+                    </div>
+                    <div class=" space-x-1 flex items-center">
+                        <label class="font-medium text-sm" for="materia">MATERIA*</label>
+                        <input class="h-8 rounded border-slate-400 border" type="text" id="materia" name="materia" required><br><br>
+                    </div>
+                </div>
+                <div class="flex space-x-24">
+                    <div class=" space-x-1 flex items-center ml-10">
+                        <label class="font-medium text-sm" for="grupo">GRUPO*</label>
+                        <input class="h-8 rounded border-slate-400 border" type="text" id="grupo" name="grupo" required><br><br>
+                    </div>
+                    <div class=" space-x-1 flex items-center">
+                        <label class="font-medium text-sm" for="jefeDocentes">JEFE DE DOCENTES*</label>
+                        <input class="h-8 rounded border-slate-400 border" type="text" id="jefeDocentes" name="jefeDocentes" required><br><br>
+                    </div>
+                </div>
+                <!-- Fin de nuevos campos -->
                 <div class="h-44">
                     <label class="font-medium text-sm ml-9" for="textoOficio">TEXTO DE OFICIO</label><br>
                     <textarea class="rounded border-slate-400 border w-10/12 h-44 ml-9" id="textoOficio" name="textoOficio" rows="4" cols="50" required></textarea><br><br>
                 </div>
-
                 <div class="space-x-5">
                     <button class="bg-slate-300 text-black font-medium w-28 h-10 rounded-lg ml-9" type="submit">CANCELAR</button>
                     <button class="bg-[#730027] text-white font-medium w-36 h-10 rounded-lg" type="submit">GENERAR OFICIO</button>
                 </div>
-                
             </form>
-
         </div>
-
-
         <div class="-mt-10 ml-8">
-
             <h2 class="font-medium text-sm">Vista previa del PDF:</h2>
             <iframe id="iframePdf" name="iframePdf" class="border w-96 h-full border-slate-400"></iframe>
-
         </div>
-
     </div>
 
-    
-    
+    <script>
+        // Cambiar el formato de la fecha al enviar el formulario
+        document.getElementById('formularioPdf').addEventListener('submit', function() {
+            const fechaInput = document.getElementById('fecha');
+            // Obtener el valor del input de fecha
+            const fecha = fechaInput.value;
+            // Formatear la fecha a un formato específico (ejemplo: YYYY-MM-DD)
+            const formattedDate = new Date(fecha).toISOString().split('T')[0];
+            // Asignar el valor formateado de la fecha de vuelta al input
+            fechaInput.value = formattedDate;
+        });
+    </script>
 
-
-
-    
-
-    
 </body>
 </html>

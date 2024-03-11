@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página de Inicio</title>
     <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+
     <div class="bg-[#730027] h-14 w-auto flex items-center justify-between">
 
         <div class="flex items-center">
@@ -13,31 +18,51 @@
             <h1 class="text-white font-semibold ml-2">Portal de oficios</h1>
 
         </div>
-        
-
         <div class="space-x-8 mr-8 font-medium flex items-center">
             <form action="/maestros">
-                <button class="text-white duration-150 ease-in-out hover:scale-100 hover:bg-white hover:text-black hover:p-1 hover:rounded-lg", type="submit">• Maestros</button>
+                <button
+                    class="text-white duration-150 ease-in-out hover:scale-100 hover:bg-white hover:text-black hover:p-1 hover:rounded-lg"
+                    type="submit">• Maestros</button>
             </form>
             <form action="/materias">
-                <button class="text-white duration-150 ease-in-out hover:scale-100 hover:bg-white hover:text-black hover:p-1 hover:rounded-lg">• Materias</button>
+                <button
+                    class="text-white duration-150 ease-in-out hover:scale-100 hover:bg-white hover:text-black hover:p-1 hover:rounded-lg">•
+                    Materias</button>
             </form>
             <form action="/register">
-                <button class="text-white duration-150 ease-in-out hover:scale-100 hover:bg-white hover:text-black hover:p-1 hover:rounded-lg">• Usuarios</button>
+                <button
+                    class="text-white duration-150 ease-in-out hover:scale-100 hover:bg-white hover:text-black hover:p-1 hover:rounded-lg">•
+                    Usuarios</button>
             </form>
         </div>
-      
-    </div>
-</head>
 
-<body>
-    <h1>Pagina de incio</h1>
+    </div>
+
+    <h1>Página de inicio</h1>
     <form action="/oficio" method="GET">
         <button type="submit">Crear oficio</button>
     </form>
+
+    <!-- Formulario y iframe para visualizar el PDF -->
+    <form action="/ver-pdf" method="GET" target="_blank">
+        <label for="idOficio">ID del Oficio:</label>
+        <input type="text" id="idOficio" name="idOficio">
+        <button type="submit">Ver PDF</button>
+    </form>
+
+    <!-- Aquí se mostrará el PDF -->
+    <iframe src="" width="100%" height="600px" frameborder="0" id="pdfViewer"></iframe>
+
+    <script>
+        // Script para cambiar la URL del iframe cuando se envíe el formulario
+        document.querySelector('form[action="/ver-pdf"]').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const idOficio = document.getElementById('idOficio').value;
+            const iframe = document.getElementById('pdfViewer');
+            iframe.src = `/ver-pdf/${idOficio}`;
+        });
+    </script>
+
 </body>
-
-
-
 
 </html>

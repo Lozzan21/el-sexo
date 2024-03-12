@@ -1,7 +1,7 @@
 const PDFDocument = require('pdfkit');
 
 function generarPDF(datosOficio, callback) {
-    const doc = new PDFDocument(); 
+    const doc = new PDFDocument();
 
     // Pipe its output somewhere, like to a file or HTTP response
     const buffers = [];
@@ -13,21 +13,21 @@ function generarPDF(datosOficio, callback) {
 
     // Escribir contenido en el PDF
     doc.text('Asunto: ' + datosOficio.asunto)
-       .moveDown()
-       .text('Maestro: ' + datosOficio.maestro)
-       .moveDown()
-       .text('Materia: ' + datosOficio.materia)
-       .moveDown()
-       .text('Grupo: ' + datosOficio.grupo)
-       .moveDown()
-       .text('Dirigido a: ' + datosOficio.dirigido)
-       .moveDown()
-       .text('Jefe de docentes: ' + datosOficio.jefeDocentes)
-       .moveDown()
-       .text('Fecha: ' + formatFecha(datosOficio.fecha))
-       .moveDown()
-       .text('Texto del Oficio: ' + datosOficio.textoOficio)
-       .moveDown();
+        .moveDown()
+        .text('Maestro: ' + datosOficio.maestro)
+        .moveDown()
+        .text('Materia: ' + datosOficio.materia)
+        .moveDown()
+        .text('Grupo: ' + datosOficio.grupo)
+        .moveDown()
+        .text('Dirigido a: ' + datosOficio.dirigido)
+        .moveDown()
+        .text('Jefe de docentes: ' + datosOficio.jefeDocentes)
+        .moveDown()
+        .text('Fecha: ' + formatFecha(datosOficio.fecha))
+        .moveDown()
+        .text('Texto del Oficio: ' + datosOficio.textoOficio)
+        .moveDown();
 
     doc.end();
 }

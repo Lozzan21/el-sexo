@@ -4,12 +4,14 @@ const app = express();
 const generadorPDF = require('./generadorPDF'); // Asumiendo que tienes un archivo generadorPDF.js
 
 //capturar datos del formulario
-app.use(express.urlencoded({extended:false}));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.set('view engine', 'ejs');
+
 
 //invocar dotenv
 const dotenv = require('dotenv');
-dotenv.config({path:'./env/.env'});
+dotenv.config({ path: './env/.env' });
 
 // app.use('/resources', express.static('public'));
 app.use(express.static(__dirname + '/public'));
@@ -19,11 +21,10 @@ app.set('view engine', 'ejs');
 
 //invocar bycry
 const bcryptjs = require('bcryptjs');
-
 //var de sesión
 const session = require('express-session');
 app.use(session({
-    secret:'secret',
+    secret: 'secret',
     resave: true,
     saveUninitialized: true
 }));
@@ -38,7 +39,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/logo', (req, res) => {
-    res.render('logo'); 
+    res.render('logo');
 });
 
 app.get('/login', (req, res) => {
@@ -58,21 +59,21 @@ app.get('/oficio', (req, res) => {
 });
 
 app.get("/maestros", (req, res) => {
-  res.render("maestros");
+    res.render("maestros");
 });
 
 app.get("/materias", (req, res) => {
     res.render("materias");
-  });
-  
+});
+
 
 
 // Registro de usuario
-app.post('/register', async(req, res) => {
+app.post('/register', async (req, res) => {
     const name = req.body.name;
     const pass = req.body.pass;
     let passwordHash = await bcryptjs.hash(pass, 8);
-    connection.query('INSERT INTO users SET ?', {name: name, pass: passwordHash}, async(error, results) => {
+    connection.query('INSERT INTO users SET ?', { name: name, pass: passwordHash }, async (error, results) => {
         if (error) {
             console.log(error);
         } else {
@@ -82,7 +83,7 @@ app.post('/register', async(req, res) => {
 });
 
 // Inicio de sesión
-app.post('/auth', async(req, res) => {
+app.post('/auth', async (req, res) => {
     const name = req.body.name;
     const pass = req.body.pass;
     if (name && pass) {
@@ -97,9 +98,9 @@ app.post('/auth', async(req, res) => {
 });
 
 // Registro de maestros
-app.post('/register-maestro', async(req, res) => {
+app.post('/register-maestro', async (req, res) => {
     const name = req.body.name;
-    connection.query('INSERT INTO maestro (name) VALUES (?)', [name], async(error, results) => {
+    connection.query('INSERT INTO maestro (name) VALUES (?)', [name], async (error, results) => {
         if (error) {
             console.log(error);
             res.send('Error al agregar el maestro');
@@ -110,9 +111,9 @@ app.post('/register-maestro', async(req, res) => {
 });
 
 // Eliminación de maestros
-app.post('/delete-maestro', async(req, res) => {
+app.post('/delete-maestro', async (req, res) => {
     const maestroId = req.body.maestroId;
-    connection.query('DELETE FROM maestro WHERE id = ?', [maestroId], async(error, results) => {
+    connection.query('DELETE FROM maestro WHERE id = ?', [maestroId], async (error, results) => {
         if (error) {
             console.log(error);
             res.send('Error al borrar el maestro');
@@ -123,9 +124,9 @@ app.post('/delete-maestro', async(req, res) => {
 });
 
 // Registro de materias
-app.post('/register-materia', async(req, res) => {
+app.post('/register-materia', async (req, res) => {
     const name = req.body.name;
-    connection.query('INSERT INTO materias (name) VALUES (?)', [name], async(error, results) => {
+    connection.query('INSERT INTO materias (name) VALUES (?)', [name], async (error, results) => {
         if (error) {
             console.log(error);
             res.send('Error al agregar la materia');
@@ -136,9 +137,9 @@ app.post('/register-materia', async(req, res) => {
 });
 
 // Eliminación de materias
-app.post('/delete-materia', async(req, res) => {
+app.post('/delete-materia', async (req, res) => {
     const materiaId = req.body.materiaId;
-    connection.query('DELETE FROM materias WHERE id = ?', [materiaId], async(error, results) => {
+    connection.query('DELETE FROM materias WHERE id = ?', [materiaId], async (error, results) => {
         if (error) {
             console.log(error);
             res.send('Error al borrar la materia');
@@ -149,9 +150,9 @@ app.post('/delete-materia', async(req, res) => {
 });
 
 // Registro de especialidades
-app.post('/register-especialidad', async(req, res) => {
+app.post('/register-especialidad', async (req, res) => {
     const name = req.body.name;
-    connection.query('INSERT INTO especialidades (especialidad) VALUES (?)', [especialidad], async(error, results) => {
+    connection.query('INSERT INTO especialidades (especialidad) VALUES (?)', [especialidad], async (error, results) => {
         if (error) {
             console.log(error);
             res.send('Error al agregar la especialidad');
@@ -160,8 +161,6 @@ app.post('/register-especialidad', async(req, res) => {
         }
     });
 });
-
-
 
 // Generar PDF
 app.post('/generar-pdf', (req, res) => {
@@ -184,10 +183,9 @@ app.post('/generar-pdf', (req, res) => {
     });
 });
 
-// Ruta para mostrar el PDF descifrado
-app.get('/ver-pdf/:id', (req, res) => {
-    const oficioId = req.params.id;
-    connection.query('SELECT pdf_blob FROM oficios WHERE id = ?', [oficioId], (error, results) => {
+// Ruta para mostrar y descargar el PDF
+app.get('/descargar-pdf', (req, res) => {
+    connection.query('SELECT pdf_blob FROM oficios ORDER BY id DESC LIMIT 1', (error, results) => {
         if (error) {
             console.error('Error al obtener el PDF de la base de datos:', error);
             res.status(500).send('Error al obtener el PDF de la base de datos');
@@ -202,6 +200,46 @@ app.get('/ver-pdf/:id', (req, res) => {
         }
     });
 });
+
+// Ruta para obtener los nombres de los maestros desde la base de datos
+app.get('/obtener-maestros', (req, res) => {
+    connection.query('SELECT name FROM maestro', (error, results) => {
+        if (error) {
+            console.error('Error al obtener los maestros de la base de datos:', error);
+            res.status(500).send('Error al obtener los maestros de la base de datos');
+        } else {
+            const maestros = results.map(result => result.name);
+            res.json(maestros); // Enviar los nombres de los maestros como respuesta JSON
+        }
+    });
+});
+
+// Ruta para obtener los nombres de las especialidades desde la base de datos
+app.get('/obtener-especialidad', (req, res) => {
+    connection.query('SELECT name FROM especialidades', (error, results) => {
+        if (error) {
+            console.error('Error al obtener la especialidad de la base de datos:', error);
+            res.status(500).send('Error al obtener la especialidad de la base de datos');
+        } else {
+            const especialidad = results.map(result => result.name);
+            res.json(especialidad); // Enviar los nombres de las especialidades como respuesta JSON
+        }
+    });
+});
+
+// Ruta para obtener los nombres de los grupos desde la base de datos
+app.get('/obtener-grupos', (req, res) => {
+    connection.query('SELECT grupo FROM grupo', (error, results) => {
+        if (error) {
+            console.error('Error al obtener el grupo de la base de datos:', error);
+            res.status(500).send('Error al obtener el grupo de la base de datos');
+        } else {
+            const grupos = results.map(result => result.name);
+            res.json(grupos); // Enviar los nombres de las especialidades como respuesta JSON
+        }
+    });
+});
+
 
 
 

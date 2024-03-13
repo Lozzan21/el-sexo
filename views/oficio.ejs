@@ -28,54 +28,41 @@
                     <div class=" space-x-1 flex items-center ml-10">
                         <!-- Eliminado el campo de Número de Oficio -->
                     </div>
-                    <div class=" space-x-1 flex items-center">
+                    <div class="space-x-1 flex items-center ml-10">
                         <label class="font-medium text-sm" for="asunto">ASUNTO*</label>
-                        <input class="h-8 rounded border-slate-400 border" type="text" id="asunto" name="asunto"
-                            required><br><br>
+                        <select class="h-8 rounded border-slate-400 border" id="asunto" name="asunto" required>
+                        </select><br><br>
                     </div>
                 </div>
                 <div class="flex space-x-24">
                     <div class=" space-x-1 flex items-center ml-10">
                         <label class="font-medium text-sm" for="fecha">FECHA*</label>
-                        <!-- Cambiado el tipo de input a date y eliminado el atributo required -->
                         <input class="h-8 rounded border-slate-400 border" type="date" id="fecha" name="fecha"><br><br>
                     </div>
-                    <div class=" space-x-1 flex items-center">
-                        <label class="font-medium text-sm" for="destinatario">DIRIGIDO A...</label>
-                        <input class="h-8 rounded border-slate-400 border" type="text" id="destinatario"
-                            name="destinatario" required><br><br>
-                    </div>
                 </div>
-                <!-- Nuevos campos agregados -->
                 <div class="flex space-x-24">
                     <div class="space-x-1 flex items-center ml-10">
                         <label class="font-medium text-sm" for="maestro">MAESTRO*</label>
                         <select class="h-8 rounded border-slate-400 border" id="maestro" name="maestro" required>
-                            <!-- Las opciones se cargarán dinámicamente desde la base de datos -->
                         </select><br><br>
                     </div>
                     <div class="space-x-1 flex items-center ml-10">
                         <label class="font-medium text-sm" for="especialidades">ESPECIALIDAD*</label>
                         <select class="h-8 rounded border-slate-400 border" id="especialidades" name="especialidades"
                             required>
-                            <!-- Las opciones se cargarán dinámicamente desde la base de datos -->
                         </select><br><br>
                     </div>
                 </div>
                 <div class="flex space-x-24">
                     <div class="space-x-1 flex items-center ml-10">
                         <label class="font-medium text-sm" for="grupo">GRUPO*</label>
-                        <select class="h-8 rounded border-slate-400 border" id="grupo" name="grupo"
-                            required>
-                            <!-- Las opciones se cargarán dinámicamente desde la base de datos -->
+                        <select class="h-8 rounded border-slate-400 border" id="grupo" name="grupo" required>
                         </select><br><br>
                     </div>
-                    <div class=" space-x-1 flex items-center">
-                        <label class="font-medium text-sm" for="jefeDocentes">JEFE DE DOCENTES*</label>
-                        <input class="h-8 rounded border-slate-400 border" type="text" id="jefeDocentes"
-                            name="jefeDocentes" required><br><br>
-                    </div>
-                </div>
+                    <button id="btnAgregarGrupo" class="bg-[#730027] text-white font-medium w-36 h-10 rounded-lg" type="button">
+                        Agregar
+                    </button>
+                </div>                
                 <!-- Fin de nuevos campos -->
                 <div class="h-44">
                     <label class="font-medium text-sm ml-9" for="textoOficio">TEXTO DE OFICIO</label><br>
@@ -98,11 +85,10 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        // Cuando el documento esté listo
+// INICIO DE LOS SCRIPS PARA EL MENU TOMADO DE LA BASE DE DATOS
+
         $(document).ready(function () {
-            // Realizar una solicitud AJAX para obtener los nombres de los maestros
             $.get('/obtener-maestros', function (maestros) {
-                // Iterar sobre los nombres de los maestros y agregar opciones al menú desplegable
                 maestros.forEach(function (maestro) {
                     $('#maestro').append($('<option>', {
                         value: maestro,
@@ -114,11 +100,8 @@
     </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        // Cuando el documento esté listo
         $(document).ready(function () {
-            // Realizar una solicitud AJAX para obtener las materias
             $.get('/obtener-especialidad', function (especialidad) {
-                // Iterar sobre las materias y agregar opciones al menú desplegable
                 especialidad.forEach(function (especialidades) {
                     $('#especialidades').append($('<option>', {
                         value: especialidades,
@@ -130,11 +113,8 @@
     </script>
 
     <script>
-        // Cuando el documento esté listo
         $(document).ready(function () {
-            // Realizar una solicitud AJAX para obtener las materias
             $.get('/obtener-grupos', function (grupos) {
-                // Iterar sobre las materias y agregar opciones al menú desplegable
                 grupos.forEach(function (grupo) {
                     $('#grupo').append($('<option>', {
                         value: grupo,
@@ -144,7 +124,29 @@
             });
         });
     </script>
+    <script>
+        $(document).ready(function () {
+            $.get('/obtener-asuntos', function (asuntos) {
+                asuntos.forEach(function (asunto) {
+                    $('#asunto').append($('<option>', {
+                        value: asunto,
+                        text: asunto
+                    }));
+                });
+            });
+        });
+    </script>
 
+    <script>
+        // SCRIPS PARA AÑADIR A LA CAJA DE TEXTO LOS CAMPOS QUE TENEMOS
+
+        document.getElementById('btnAgregarGrupo').addEventListener('click', function () {
+            const grupo = document.getElementById('grupo').value;
+            const textoOficio = document.getElementById('textoOficio');
+            textoOficio.value += grupo;
+        });
+    </script>
+    
 </body>
 
 </html>

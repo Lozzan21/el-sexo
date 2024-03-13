@@ -229,7 +229,7 @@ app.get('/obtener-especialidad', (req, res) => {
 
 // Ruta para obtener los nombres de los grupos desde la base de datos
 app.get('/obtener-grupos', (req, res) => {
-    connection.query('SELECT grupo FROM grupo', (error, results) => {
+    connection.query('SELECT name FROM grupo', (error, results) => {
         if (error) {
             console.error('Error al obtener el grupo de la base de datos:', error);
             res.status(500).send('Error al obtener el grupo de la base de datos');
@@ -240,8 +240,18 @@ app.get('/obtener-grupos', (req, res) => {
     });
 });
 
-
-
+// Ruta para obtener el asunto desde la base de datos
+app.get('/obtener-asuntos', (req, res) => {
+    connection.query('SELECT name FROM asuntos', (error, results) => {
+        if (error) {
+            console.error('Error al obtener el asunto de la base de datos:', error);
+            res.status(500).send('Error al obtener el asunto de la base de datos');
+        } else {
+            const asuntos = results.map(result => result.name);
+            res.json(asuntos); // Enviar los nombres de las especialidades como respuesta JSON
+        }
+    });
+});
 
 app.listen(3000, () => {
     console.log('SERVER RUNNING IN http://localhost:3000');

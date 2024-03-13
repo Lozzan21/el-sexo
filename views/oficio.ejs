@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="icon" type="icono" href="/img/logo.png">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body>
 
     <div class="bg-[#730027] h-14 w-auto flex items-center justify-between">
@@ -16,60 +18,62 @@
         </div>
     </div>
 
-    <h1 class="font-medium mt-10 ml-10">FAVOR DE  LLENAR TODOS LOS CAMPOS PARA GENERAR EL OFICIO</h1>
+    <h1 class="font-medium mt-10 ml-10">FAVOR DE LLENAR TODOS LOS CAMPOS PARA GENERAR EL OFICIO</h1>
 
     <div class="flex">
         <div class="w-7/12">
-            <form class="space-y-10 mt-10 w-11/12" id="formularioPdf" action="/generar-pdf" method="POST" target="iframePdf">
+            <form class="space-y-10 mt-10 w-11/12" id="formularioPdf" action="/generar-pdf" method="POST"
+                target="iframePdf">
                 <div class="flex space-x-24">
                     <div class=" space-x-1 flex items-center ml-10">
                         <!-- Eliminado el campo de Número de Oficio -->
                     </div>
-                    <div class=" space-x-1 flex items-center">
+                    <div class="space-x-1 flex items-center ml-10">
                         <label class="font-medium text-sm" for="asunto">ASUNTO*</label>
-                        <input class="h-8 rounded border-slate-400 border" type="text" id="asunto" name="asunto" required><br><br>
+                        <select class="h-8 rounded border-slate-400 border" id="asunto" name="asunto" required>
+                        </select><br><br>
                     </div>
                 </div>
                 <div class="flex space-x-24">
                     <div class=" space-x-1 flex items-center ml-10">
                         <label class="font-medium text-sm" for="fecha">FECHA*</label>
-                        <!-- Cambiado el tipo de input a date y eliminado el atributo required -->
                         <input class="h-8 rounded border-slate-400 border" type="date" id="fecha" name="fecha"><br><br>
                     </div>
-                    <div class=" space-x-1 flex items-center">
-                        <label class="font-medium text-sm" for="destinatario">DIRIGIDO A...</label>
-                        <input class="h-8 rounded border-slate-400 border" type="text" id="destinatario" name="destinatario" required><br><br>
-                    </div>
                 </div>
-                <!-- Nuevos campos agregados -->
                 <div class="flex space-x-24">
-                    <div class=" space-x-1 flex items-center ml-10">
+                    <div class="space-x-1 flex items-center ml-10">
                         <label class="font-medium text-sm" for="maestro">MAESTRO*</label>
-                        <input class="h-8 rounded border-slate-400 border" type="text" id="maestro" name="maestro" required><br><br>
+                        <select class="h-8 rounded border-slate-400 border" id="maestro" name="maestro" required>
+                        </select><br><br>
                     </div>
-                    <div class=" space-x-1 flex items-center">
-                        <label class="font-medium text-sm" for="materia">ESPECIALIDAD*</label>
-                        <input class="h-8 rounded border-slate-400 border" type="text" id="materia" name="materia" required><br><br>
+                    <div class="space-x-1 flex items-center ml-10">
+                        <label class="font-medium text-sm" for="especialidades">ESPECIALIDAD*</label>
+                        <select class="h-8 rounded border-slate-400 border" id="especialidades" name="especialidades"
+                            required>
+                        </select><br><br>
                     </div>
                 </div>
                 <div class="flex space-x-24">
-                    <div class=" space-x-1 flex items-center ml-10">
+                    <div class="space-x-1 flex items-center ml-10">
                         <label class="font-medium text-sm" for="grupo">GRUPO*</label>
-                        <input class="h-8 rounded border-slate-400 border" type="text" id="grupo" name="grupo" required><br><br>
+                        <select class="h-8 rounded border-slate-400 border" id="grupo" name="grupo" required>
+                        </select><br><br>
                     </div>
-                    <div class=" space-x-1 flex items-center">
-                        <label class="font-medium text-sm" for="jefeDocentes">JEFE DE DOCENTES*</label>
-                        <input class="h-8 rounded border-slate-400 border" type="text" id="jefeDocentes" name="jefeDocentes" required><br><br>
-                    </div>
-                </div>
+                    <button id="btnAgregarGrupo" class="bg-[#730027] text-white font-medium w-36 h-10 rounded-lg" type="button">
+                        Agregar
+                    </button>
+                </div>                
                 <!-- Fin de nuevos campos -->
                 <div class="h-44">
                     <label class="font-medium text-sm ml-9" for="textoOficio">TEXTO DE OFICIO</label><br>
-                    <textarea class="rounded border-slate-400 border w-10/12 h-44 ml-9" id="textoOficio" name="textoOficio" rows="4" cols="50" required></textarea><br><br>
+                    <textarea class="rounded border-slate-400 border w-10/12 h-44 ml-9" id="textoOficio"
+                        name="textoOficio" rows="4" cols="50" required></textarea><br><br>
                 </div>
                 <div class="space-x-5">
-                    <button class="bg-slate-300 text-black font-medium w-28 h-10 rounded-lg ml-9" type="submit">CANCELAR</button>
-                    <button class="bg-[#730027] text-white font-medium w-36 h-10 rounded-lg" type="submit">GENERAR OFICIO</button>
+                    <button class="bg-slate-300 text-black font-medium w-28 h-10 rounded-lg ml-9"
+                        type="submit">CANCELAR</button>
+                    <button class="bg-[#730027] text-white font-medium w-36 h-10 rounded-lg" type="submit">GENERAR
+                        OFICIO</button>
                 </div>
             </form>
         </div>
@@ -79,18 +83,74 @@
         </div>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        // Cambiar el formato de la fecha al enviar el formulario
-        document.getElementById('formularioPdf').addEventListener('submit', function() {
-            const fechaInput = document.getElementById('fecha');
-            // Obtener el valor del input de fecha
-            const fecha = fechaInput.value;
-            // Formatear la fecha a un formato específico (ejemplo: YYYY-MM-DD)
-            const formattedDate = new Date(fecha).toISOString().split('T')[0];
-            // Asignar el valor formateado de la fecha de vuelta al input
-            fechaInput.value = formattedDate;
+// INICIO DE LOS SCRIPS PARA EL MENU TOMADO DE LA BASE DE DATOS
+
+        $(document).ready(function () {
+            $.get('/obtener-maestros', function (maestros) {
+                maestros.forEach(function (maestro) {
+                    $('#maestro').append($('<option>', {
+                        value: maestro,
+                        text: maestro
+                    }));
+                });
+            });
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.get('/obtener-especialidad', function (especialidad) {
+                especialidad.forEach(function (especialidades) {
+                    $('#especialidades').append($('<option>', {
+                        value: especialidades,
+                        text: especialidades
+                    }));
+                });
+            });
         });
     </script>
 
+    <script>
+        $(document).ready(function () {
+            $.get('/obtener-grupos', function (grupos) {
+                grupos.forEach(function (grupo) {
+                    $('#grupo').append($('<option>', {
+                        value: grupo,
+                        text: grupo
+                    }));
+                });
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $.get('/obtener-asuntos', function (asuntos) {
+                asuntos.forEach(function (asunto) {
+                    $('#asunto').append($('<option>', {
+                        value: asunto,
+                        text: asunto
+                    }));
+                });
+            });
+        });
+    </script>
+
+    <script>
+        // SCRIPS PARA AÑADIR A LA CAJA DE TEXTO LOS CAMPOS QUE TENEMOS
+
+        document.getElementById('btnAgregarGrupo').addEventListener('click', function () {
+            const grupo = document.getElementById('grupo').value;
+            const textoOficio = document.getElementById('textoOficio');
+            textoOficio.value += grupo;
+        });
+    </script>
+    
 </body>
+
+</html>
+
+</body>
+
 </html>
